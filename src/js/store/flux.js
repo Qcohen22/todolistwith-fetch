@@ -1,23 +1,23 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			list: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			
+			
+				fetch(
+					"https://assets.breatheco.de/apis/fake/todos/user/astronaut", {
+						method: "GET",
+						redirect: "follow",
+					}
+				
+				)
+					.then((response) =>  response.json())
+					.then((result) => setStore({list: result}))
+					.catch((error) => console.log("error", error));
 			},
 			loadSomeData: () => {
 				/**
